@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{%load static%}
+
+  {% block content %}
+  	 {% for data in result %}
+              <div class="post col-xl-6">
+                <div class="post-thumbnail"><a href="{{ data.get_absolute_url }}"><img src="{{ data.thumb.url }}" alt="..." class="img-fluid"></a></div>
+                <div class="post-details">
+                  <div class="post-meta d-flex justify-content-between">
+                    <div class="category">
+                      {% for a in data.cat.all %}
+                      <a href="#">{{ cat }}</a>
+                      {% endfor %}
+                    </div>
+                  </div><a href="{{ data.get_absolute_url }}">
+                    <h3 class="h4">{{ data.title }}</h3></a>
+                  <p class="text-muted">{{ data.overview }}</p>
+                  <footer class="post-footer d-flex align-items-center"><a href="#" class="author d-flex align-items-center flex-wrap">
+                      <div class="avatar"><img src="{{ data.author.dp.url }}" alt="..." class="img-fluid"></div>
+                      <div class="title"><span>{{data.author}}</span></div></a>
+                    <div class="date"><i class="icon-clock"></i>{{data.time|timesince}} ago</div>
+                    <div class="comments meta-last"><i class="icon-comment"></i>{{data.comment_count}}</div>
+                  </footer>
+                </div>
+              </div>
+             {% endfor %}
+  {% endblock content %}
+  	
+
